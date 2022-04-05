@@ -43,7 +43,7 @@ public class MazeGenerator {
         for (DIR dir : dirs) {
             int nx = cx + dir.dx;
             int ny = cy + dir.dy;
-            if (between(nx, x) && between(ny, y)
+            if (between.between(nx, x) && between.between(ny, y)
                     && (maze[nx][ny] == 0)) {
                 maze[cx][cy] |= dir.bit;
                 maze[nx][ny] |= dir.opposite.bit;
@@ -52,11 +52,8 @@ public class MazeGenerator {
         }
     }
 
-    private static boolean between(int v, int upper) {
-        return (v >= 0) && (v < upper);
-    }
 
-    private enum DIR {
+    public enum DIR {
         N(1, 0, -1), S(2, 0, 1), E(4, 1, 0), W(8, -1, 0);
         private final int bit;
         private final int dx;
@@ -78,12 +75,6 @@ public class MazeGenerator {
         }
     }
 
-    public static void main(String[] args) {
-        int x = args.length >= 1 ? (Integer.parseInt(args[0])) : 20;
-        int y = args.length == 2 ? (Integer.parseInt(args[1])) : 20;
-        MazeGenerator maze = new MazeGenerator(x, y);
-        maze.display();
-    }
 
 
 
